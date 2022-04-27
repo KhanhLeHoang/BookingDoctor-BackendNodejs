@@ -13,6 +13,10 @@ const sequelize = new Sequelize(process.env.DB_DATABASE_NAME, process.env.DB_USE
         rejectUnauthorized: false
       }
     },
+
+    query: {
+      "raw": true
+    },
   });
 
 let connectDB = async () => {

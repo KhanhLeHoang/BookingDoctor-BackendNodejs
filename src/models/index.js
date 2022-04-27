@@ -19,6 +19,9 @@ const customizeConfig = {
       rejectUnauthorized: false
     }
   },
+  query: {
+    "raw": true
+  },
 }
 sequelize = new Sequelize(process.env.DB_DATABASE_NAME, process.env.DB_USER_NAME, process.env.DB_PASSWORD, customizeConfig);
 
