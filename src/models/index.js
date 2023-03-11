@@ -11,19 +11,26 @@ const db = {};
 let sequelize;
 const customizeConfig = {
   host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  dialect: process.env.DB_DIALECT,
   dialect: "postgres",
   logging: false,
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
-    }
-  },
+  // dialectOptions: {
+  //   ssl: {
+  //     require: true,
+  //     rejectUnauthorized: false
+  //   }
+  // },
   query: {
     "raw": true
   },
 }
-sequelize = new Sequelize(process.env.DB_DATABASE_NAME, process.env.DB_USER_NAME, process.env.DB_PASSWORD, customizeConfig);
+
+sequelize = new Sequelize(
+  process.env.DB_DATABASE_NAME,
+  process.env.DB_USER_NAME,
+  process.env.DB_PASSWORD,
+  customizeConfig);
 
 // if (config.use_env_variable) {
 //   sequelize = new Sequelize(process.env[config.use_env_variable], config);

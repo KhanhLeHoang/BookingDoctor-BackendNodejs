@@ -1,0 +1,31 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+var _express = _interopRequireDefault(require("express"));
+var _homeController = _interopRequireDefault(require("../controllers/homeController"));
+var _userController = _interopRequireDefault(require("../controllers/userController"));
+var _doctorControllers = _interopRequireDefault(require("../controllers/doctorControllers"));
+var router = _express["default"].Router();
+var initWebRoutes = function initWebRoutes(app) {
+  router.get('/', _homeController["default"].getHomePage);
+  router.get('/crud', _homeController["default"].getCRUD);
+  router.post('/create-crud', _homeController["default"].createCRUD);
+  router.get('/edit-crud', _homeController["default"].getEditCRUD);
+  router.post('/save-edit', _homeController["default"].saveEditCRUD);
+  router.get('/delete-crud', _homeController["default"].getDeleteCRUD);
+  router.post('/api/login', _userController["default"].handleLogin);
+  router.get('/api/get-all-users', _userController["default"].handleGetAllUsers);
+  router.post('/api/create-user', _userController["default"].createUser);
+  router.put('/api/edit-user', _userController["default"].editUser);
+  router["delete"]('/api/delete-user', _userController["default"].deleteUser);
+  router.get('/api/allcode', _userController["default"].getAllCode);
+  router.get('/api/get-top-doctor', _doctorControllers["default"].getTopDoctor);
+  router.get('/api/get-all-doctors', _doctorControllers["default"].getAllDoctors);
+  router.post('/api/save-info-doctor', _doctorControllers["default"].postInfoDoctor);
+  router.get('/api/get-detail-doctor-by-id', _doctorControllers["default"].getDetailDoctorById);
+  router.post('/api/bulk-create-schedule', _doctorControllers["default"].bulkCreateSchedule);
+  router["delete"]('/api/bulk-delete-schedule', _doctorControllers["default"].bulkDeleteSchedule);
+  router.get('/api/get-schedule', _doctorControllers["default"].getSchedule);
+  return app.use('/', router);
+};
+module.exports = initWebRoutes;
